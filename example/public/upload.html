@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Todo</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.6.2.min.js"></script>
+
+  </head>
+  <body ng-app="myApp">
+
+          <div ng-controller = "myCtrl">
+            <input type="file" multiple="multiple" file-model="myFile" />
+            <button ng-click="uploadFile()">upload</button>
+            <button ng-click="uploadFloorPlanFile()">streamupload</button>
+
+<br>
+        <input type="text" id="cat" value="study">
+<br>
+        <input type="text" id="buildingname" value="Buildingname">
+<br>
+        <!-- <input type="text" id="buildingid" value="-KDgVMjaMx8ELCs1bcjK"> -->
+        <input type="text" id="buildingid" value="">
+        </div>
+<br>
+        <input id="isWeb" type="checkbox" checked="checked">
+        <!-- <input id="isWeb" type="checkbox" > -->
+        <label for="isWeb">is web</label>
+        </div>
+
+
+<script>
+var myApp = angular.module('myApp', []);
+
+myApp.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
+
+myApp.service('fileUpload', ['$http', function ($http) {
+    this.uploadFileToUrl = function(file, uploadUrl){
+
+        var json = {
+            userUID : $("#userid").val(),
+            userEmail : $("#useremail").val(),
+            category: $("#cat").val(),
+            buildingName: $("#buildingname").val(),
+            buildingUID: $("#buildingid").val(),
+            buildId: $("#buildingid").val(),
+            isWeb: $("#isWeb").is( ":checked" )
+        }
+
+        var fd = new FormData();
+        fd.append('file', file);
+        fd.append('fields', (JSON.stringify(json)));
+
+        console.log("going to post : "+file.size/1000 +"mb")
+
+
+        var start = new Date().getTime();
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {
+                'Content-Type': undefined,
+            }
+        })
+        .success(function(result){
+
+            var end = new Date().getTime();
+            var time = end - start;
+            console.log("time: "+time/1000 + "s")
+
+
+            console.log("result")
+            console.log(result)
+        })
+        .error(function(error){
+            var end = new Date().getTime();
+            var time = end - start;
+            console.log("time: "+time/1000 + "s")
+
+
+            console.log("error")
+            console.log(error)
+        });
+    }
+}]);
+
+myApp.controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
+
+    $scope.uploadFile = function(){
+        var file = $scope.myFile;
+
+        var uploadUrl = "/upload";
+
+        fileUpload.uploadFileToUrl(file, uploadUrl);
+    };
+
+    $scope.uploadFloorPlanFile = function(){
+        var file = $scope.myFile;
+
+        var uploadUrl = "/streamupload";
+
+        fileUpload.uploadFileToUrl(file, uploadUrl);
+    };
+}]);
+
+</script>
+  </body>
+</html>

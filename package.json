@@ -1,0 +1,41 @@
+{
+  "name": "gcloud-storage-api",
+  "version": "1.0.0",
+  "description": "A wrapper around the google storage functions for upload (both upload and streaming) and delete.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Peter Chang <wahengchang@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "formidable": "^1.0.17",
+    "gcloud": "^0.34.0",
+    "underscore": "^1.8.3",
+    "url-valid": "^0.3.0"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/wahengchang/gcloud-storage-api.git"
+  },
+  "keywords": [
+    "google",
+    "storage",
+    "upload",
+    "promise",
+    "gcloud",
+    "file",
+    "streaming",
+    "local",
+    "api"
+  ],
+  "bugs": {
+    "url": "https://github.com/wahengchang/gcloud-storage-api/issues"
+  },
+  "homepage": "https://github.com/wahengchang/gcloud-storage-api#readme"
+}
