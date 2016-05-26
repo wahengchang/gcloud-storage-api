@@ -19,6 +19,16 @@ googleAPI.deleteStorageFile(url)
 ```
 
 #### Initialization
+
+Paste and service-key which download from google console
+
+![alt tag](http://gdriv.es/gpeter/desktop.png)
+
+service-key.json 
+
+![alt tag](http://gdriv.es/gpeter/sublime_.png)
+
+Initializing gcloud 
 ```js
 var googleAPI = require('gcloud-storage-api')
 googleAPI.init('projectId',"service-key.json")
@@ -39,7 +49,7 @@ app.post('/upload', googleAPI.formParsing, function(req, res, next) {
         console.log("finished uploadLocalFile: "+result)
         res.send(result)
     },function(err){
-		console.log(err)
+        console.log(err)
     })
 });
 ```
