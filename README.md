@@ -1,5 +1,9 @@
 # gcloud-storage-api 
-A wrapper base on gcloud, which around the google storage functions for upload (both upload and streaming) and delete.[npm]](https://www.npmjs.com/package/gcloud-storage-api)
+
+An easy google storage tool to upload file and generate public link as return (both file uploading and buffer streaming).
+
+
+A wrapper base on gcloud, which around the google storage functions for upload (both file uploading and streaming) and delete.[![NPM](https://nodei.co/npm/gcloud-storage-api.png?downloads=true&downloadRank=true)](https://www.npmjs.com/package/gcloud-storage-api)
 
 
 ## Install
@@ -8,15 +12,18 @@ A wrapper base on gcloud, which around the google storage functions for upload (
 $ npm install --save gcloud-storage-api
 ```
 
+## Functions of this package:
 
-## Usage
-To get the projectId and key.json, it is needed to Visit the Google Developers Console. There is the instruction from gcloud: https://www.npmjs.com/package/gcloud 
-- ##### Functions of this package:
 ```js
 googleAPI.uploadLocalFile(BUCKET_NAME, fileName, fileLocalPath)
 googleAPI.uploadBuffer(BUCKET_NAME, fileName, buffer)
 googleAPI.deleteStorageFile(url)
 ```
+
+
+## Usage
+To get the projectId and key.json, it is needed to Visit the Google Developers Console. There is the instruction from gcloud: https://www.npmjs.com/package/gcloud 
+
 
 #### Initialization
 
@@ -35,8 +42,8 @@ googleAPI.init('projectId',"service-key.json")
 ```
 
 #### Upload local file 
-- **googleAPI.formParsing** is a fomidable function parsing local file which is multipart
-- **googleAPI.uploadLocalFile(BUCKET_NAME, fileName, fileLocalPath)** is a function that does local file uploading and respose a promise.
+- **googleAPI.formParsing** is a fomidable function which parsing local file with POST is multipart
+- **googleAPI.uploadLocalFile(BUCKET_NAME, fileName, fileLocalPath)** is a function that does local file uploading, respose the public link and resolve a promise.
 ```js
 ## Usage
 app.post('/upload', googleAPI.formParsing, function(req, res, next) {
@@ -57,7 +64,7 @@ app.post('/upload', googleAPI.formParsing, function(req, res, next) {
 
 #### Upload Streaming/Buffer
 - **fileName = "path/to/upload/abc.file"**
-- **googleAPI.uploadBuffer(BUCKET_NAME, fileName, buffer)** is a function that does buffer uploading and respose a promise.
+- **googleAPI.uploadBuffer(BUCKET_NAME, fileName, buffer)** is a function that does buffer uploading, respose the public link and resolve a promise.
 
 ```js
 app.post('/streamupload', googleAPI.formParsing, function(req, res, next) {
