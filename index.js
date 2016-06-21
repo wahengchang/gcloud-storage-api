@@ -99,7 +99,7 @@ API.isExistGcloud = function(bucketname, fileName) {
 API.uploadLocalFile = function(bucketname, fileName, tempPath) {
     return new Promise(function(resolve, reject) {
 
-        fileName = stringAPI.stringFilter(fileName)
+        fileName = stringAPI.valiFileName(fileName)
 
         var bucket = gcs.bucket(bucketname),
             file = bucket.file(fileName),
@@ -131,7 +131,7 @@ API.uploadBuffer = function(bucketname, fileName, buffer) {
 
     return new Promise(function(resolve, reject) {
 
-        fileName = stringAPI.stringFilter(fileName)
+        fileName = stringAPI.valiFileName(fileName)
 
         var bucket = gcs.bucket(bucketname)
 

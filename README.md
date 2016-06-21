@@ -22,12 +22,20 @@ googleAPI.deleteStorageFile(url)
 
 
 ## Usage
-To get the projectId and key.json, it is needed to Visit the Google Developers Console. There is the instruction from gcloud: https://www.npmjs.com/package/gcloud 
+To get the projectId and key.json, it is needed to Visit the Google Developers Console. There is the offical instruction from gcloud: https://www.npmjs.com/package/gcloud 
 
 
 #### Initialization
 
-Paste and service-key which download from google console
+Create a service account key on Google Cloud Console:
+
+![alt tag](https://cloud.githubusercontent.com/assets/5538753/16215382/5228e5aa-3794-11e6-985d-bb579efe03a7.png)
+
+Key type, select JSON, and then a service-key.json is generated and able to download:
+
+![alt tag](https://cloud.githubusercontent.com/assets/5538753/16215545/ac4dd7a6-3795-11e6-80b7-defd9f334e72.png)
+
+Paste the service-key to root of NODE project
 
 ![alt tag](http://gdriv.es/gpeter/desktop.png)
 
