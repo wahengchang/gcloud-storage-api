@@ -5,7 +5,7 @@ var _ = require('underscore')
 
 
 var fileToStreamAPI = require('./fileToStreamAPI.js')
-var stringAPI = require('./stringAPI.js')
+var stringAPI = require('url-string-api')
 
 var gcs 
 
